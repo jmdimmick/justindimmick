@@ -3,10 +3,83 @@
 <head>
 <meta charset="utf-8" />
 <title>About Page</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="left-side">
+                <div class="nav-link-wrapper">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="about.html">About</a>
+                </div>
+            </div>
 
+            <div class="right-side">
+                <div class="brand">
+                    <div>Justin Dimmick</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-wrapper">
+            <audio src="Sounds/A_Vibe.mp3"></audio>
+            <button data-playing="false" role="switch" aria-checked="false">
+                <span>Play/Pause</span>
+            </button>      
+            <input type="range" id="volume" min="0" max="2" value="1" step="0.01">
+      
+        </div>
+    </div>
 </body>
+<script>
+    // for legacy browsers
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+    const audioContext = new AudioContext();
+    
+    // get the audio element
+    const audioElement = document.querySelector('audio');
+
+    // pass it into the audio context
+    const track = audioContext.createMediaElementSource(audioElement);
+
+    const gainNode = audioContext.createGain();
+    
+    const volumeControl = document.querySelector('#volume');
+
+    volumeControl.addEventListener('input', function() {
+        gainNode.gain.value = this.value;
+    }, false);
+    
+    track.connect(gainNode).connect(audioContext.destination);
+
+    // select our play button
+    const playButton = document.querySelector('button');
+
+    playButton.addEventListener('click', function() {
+       
+        // check if context is in suspended state (autoplay policy)
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+
+        // play or pause track depending on state
+        if (this.dataset.playing === 'false') {
+            audioElement.play();
+            this.dataset.playing = 'true';
+        } else if (this.dataset.playing === 'true') {
+            audioElement.pause();
+            this.dataset.playing = 'false';
+        }
+
+    }, false);
+
+    audioElement.addEventListener('ended', () => {
+        playButton.dataset.playing = 'false';
+    }, false);
+
+</script>
 </html>
