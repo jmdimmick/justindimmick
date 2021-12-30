@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <title>About Page</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 <body>
     <div class="container">
@@ -15,6 +16,9 @@
                 <div class="nav-link-wrapper">
                     <a href="about.html">About</a>
                 </div>
+                <div class="nav-link-wrapper">
+                    <a href="sample.html">Sample</a>
+                </div>
             </div>
 
             <div class="right-side">
@@ -25,7 +29,7 @@
 
         </div>
         <div class="content-wrapper">
-            <audio src="Sounds/A_Vibe.mp3"></audio>
+            <audio crossorigin="anonymous" src="./Sounds/demo.wav"></audio>
             <button data-playing="false" role="switch" aria-checked="false">
                 <span>Play/Pause</span>
             </button>      
@@ -63,14 +67,17 @@
        
         // check if context is in suspended state (autoplay policy)
         if (audioContext.state === 'suspended') {
+            console.log('suspended');
             audioContext.resume();
         }
 
         // play or pause track depending on state
         if (this.dataset.playing === 'false') {
+            console.log('not playing');
             audioElement.play();
             this.dataset.playing = 'true';
         } else if (this.dataset.playing === 'true') {
+            console.log('playing');
             audioElement.pause();
             this.dataset.playing = 'false';
         }
@@ -78,6 +85,7 @@
     }, false);
 
     audioElement.addEventListener('ended', () => {
+        console.log('ended');
         playButton.dataset.playing = 'false';
     }, false);
 
