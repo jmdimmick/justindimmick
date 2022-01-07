@@ -13,6 +13,13 @@ body {
     padding: 38px;
 }
 
+.recipe-wrapper {
+    display: flex;
+    justify-content:space-between;
+    padding-left: 38px;
+    padding-right: 38px;
+}
+
 .left-side  {
     display: flex;
 }
@@ -29,6 +36,12 @@ body {
     transition: border-bottom 0.5s;
 }
 
+.recipe-link-wrapper {
+    height: 22px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+}
+
 .nav-link-wrapper a {
     color: #8a8a8a;
     text-decoration: none;
@@ -40,6 +53,20 @@ body {
 }
 
 .nav-link-wrapper a:hover {
+    color: black;
+}
+
+.recipe-link-wrapper a {
+    color: #311b01;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.recipe-link-wrapper:hover {
+    border-bottom: 1px solid black; 
+}
+
+.recipe-link-wrapper a:hover {
     color: black;
 }
 
@@ -98,4 +125,9 @@ body {
 .img-darken {
     transition: 1.5s;
     filter: brightness(10%);
+}
+
+.p-text {
+    padding-left: 38px;
+
 }
