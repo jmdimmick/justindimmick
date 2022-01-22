@@ -50,6 +50,7 @@ body {
 .recipe-wrapper {
     display: flex;
     justify-content: flex-start;
+    align-content: center;
     padding-left: 38px;
     padding-right: 38px;
 }
