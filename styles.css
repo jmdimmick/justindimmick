@@ -21,7 +21,7 @@ body {
 
 .recipe-wrapper {
     display: flex;
-    justify-content:space-between;
+    justify-content: flex-start;
     padding-left: 38px;
     padding-right: 38px;
 }
@@ -44,8 +44,14 @@ body {
 
 .recipe-link-wrapper {
     height: 22px;
+    background: gainsboro;
     border-bottom: 1px solid transparent;
     transition: border-bottom 0.5s;
+    flex-wrap: wrap;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-top: 15px;
 }
 
 .nav-link-wrapper a {
