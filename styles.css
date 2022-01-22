@@ -212,3 +212,14 @@ h1 {
     text-shadow: 1px 1px 4px rgb(85, 85, 85);
     block-size: fit-content;
 }
+
+@media screen and (max-width:320px) {
+    .portfolio-img-background {
+        height: 107px;
+        width: 107px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: 2s;
+    }
+}
