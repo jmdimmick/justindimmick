@@ -132,8 +132,8 @@ body {
 
 
 .portfolio-img-background:hover {
-    transition: 2.5s;
-    filter: invert(1) hue-rotate(190deg);
+    transition: 4.5s;
+    filter: hue-rotate(360deg);
 }
 
 .img-darken {
