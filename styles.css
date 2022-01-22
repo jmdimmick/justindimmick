@@ -166,7 +166,7 @@ body {
 
 
 
-.portfolio-img-background:hover {
+.portfolio-img-background:hover, .portfolio-img-background:active {
     transition: 4.5s;
     filter: hue-rotate(360deg);
 }
@@ -213,7 +213,7 @@ h1 {
     block-size: fit-content;
 }
 
-@media screen and (max-width:320px) {
+@media screen and (max-width:420px) {
     .portfolio-img-background {
         height: 107px;
         width: 107px;
