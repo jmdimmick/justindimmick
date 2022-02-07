@@ -106,7 +106,6 @@
     const amaButton = document.getElementById("ama-button");
     const amaAnswer = document.getElementById("ama-answer");
     const amaInput = document.getElementById("ama-input");
-    let answer = "42";
 
     amaInput.addEventListener('change', updateAMAInput);
 
@@ -127,18 +126,37 @@
         return newQ;
     }
     
+    var count = 0;
 
     amaButton.addEventListener('click', () => {
-        const refinedQ = removePunct(amaInput.value)
+        const refinedQ = removePunct(amaInput.value);
         const questionWords = refinedQ.split(" ");
-        let i = 0
+        let i = 0;
+        count++;
         questionWords.forEach(element => {
             i++;
         });
-        const answer = questionWords[random(i)]
-        amaAnswer.innerHTML = 'I am not sure what "' + answer + '" means, but isn\'t my creator so great.'
+        const answer = questionWords[random(i)];
+        switch(count) {
+            case 1: 
+                amaAnswer.innerHTML = 'I am not familiar with the word, "' + answer + '". Are you sure that is a word?'; 
+                break;
+            case 2: 
+                amaAnswer.innerHTML = 'Not finding anything on "' + answer + '". Try typing slowly.'; 
+                break;
+            case 3: 
+                amaAnswer.innerHTML = 'I think your keyboard may be malfunctioning because the word, "' + answer + '" does not exist.'; 
+                break;
+            case 4: 
+                amaAnswer.innerHTML = 'If this is a game, I am not laughing.'; 
+                break;
+            default: 
+                amaAnswer.innerHTML = 'I am getting tired of this. Try googling, "' + answer + '".'; 
+                break;
+        };
+        // amaAnswer.innerHTML = 'I am not familiar with the word, "' + answer + '". Are you sure that is a word?'
         console.log(i);
-        console.log(answer);
+        console.log(count);
     });
 </script>
 </html>
