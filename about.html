@@ -36,8 +36,20 @@
             <div class="volume-slide">
                 <p>Volume</p>
             <input type="range" id="volume" min="0" max="2" value="1" step="0.01">
-        </div>  
+            </div>  
         </div>
+        <div class="ama-wrapper">
+            <div class="ama-question">
+                <input type="text" id="ama-input" onchange="updateAMAInput(this.value)">
+                <button id="ama-button">
+                    <span>Ask</span>
+                </button>
+            </div>
+            <div class="ama-answer">
+                <span id="ama-answer"></span>
+            </div>
+        </div>
+
     </div>
 </body>
 <script>
@@ -91,5 +103,42 @@
         playButton.dataset.playing = 'false';
     }, false);
 
+    const amaButton = document.getElementById("ama-button");
+    const amaAnswer = document.getElementById("ama-answer");
+    const amaInput = document.getElementById("ama-input");
+    let answer = "42";
+
+    amaInput.addEventListener('change', updateAMAInput);
+
+    function updateAMAInput(event){
+        amaInput.value = event.target.value;
+    };
+    
+    function random(max) {
+        return Math.floor(Math.random() * max);
+    };
+
+    function removePunct(q) {
+        let newQ = q.replace('?', '');
+        newQ = newQ.replace('.', '');
+        newQ = newQ.replace('!', '');
+        newQ = newQ.replace(',', '');
+        newQ = newQ.replace(';', '');
+        return newQ;
+    }
+    
+
+    amaButton.addEventListener('click', () => {
+        const refinedQ = removePunct(amaInput.value)
+        const questionWords = refinedQ.split(" ");
+        let i = 0
+        questionWords.forEach(element => {
+            i++;
+        });
+        const answer = questionWords[random(i)]
+        amaAnswer.innerHTML = 'I am not sure what "' + answer + '" means, but isn\'t my creator so great.'
+        console.log(i);
+        console.log(answer);
+    });
 </script>
 </html>
