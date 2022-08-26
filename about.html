@@ -26,82 +26,82 @@
                 </div>
             </div>
         </div>
+    </div>
+  
 
-        </div>
-        <div class="audio-wrapper">
-            <audio crossorigin="anonymous" src="./Sounds/demo.wav"></audio>
-            <button data-playing="false" role="switch" aria-checked="false">
-                <span>Play/Pause</span>
-            </button>    
-            <div class="volume-slide">
-                <p>Volume</p>
-            <input type="range" id="volume" min="0" max="2" value="1" step="0.01">
-            </div>  
-        </div>
         <div class="ama-wrapper">
             <div class="ama-question">
-                <input type="text" id="ama-input" onchange="updateAMAInput(this.value)">
+                <input type="text" id="ama-input" onchange="updateAMAInput(this.value)" >
                 <button id="ama-button">
                     <span>Ask</span>
                 </button>
             </div>
-            <div class="ama-answer">
+            <div class="ama-answer" style="margin-top: 30px">
                 <span id="ama-answer"></span>
             </div>
         </div>
 
-    </div>
+    <!-- <div class="audio-wrapper">
+        <audio crossorigin="anonymous" src="./Sounds/demo.wav"></audio>
+        <button data-playing="false" role="switch" aria-checked="false">
+            <span>Play/Pause</span>
+        </button>    
+        <div class="volume-slide">
+            <p>Volume</p>
+        <input type="range" id="volume" min="0" max="2" value="1" step="0.01">
+        </div>  
+    </div> -->
 </body>
 <script>
-    // for legacy browsers
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    // // for legacy browsers
+    // const AudioContext = window.AudioContext || window.webkitAudioContext;
 
-    const audioContext = new AudioContext();
+    // const audioContext = new AudioContext();
     
-    // get the audio element
-    const audioElement = document.querySelector('audio');
+    // // get the audio element
+    // const audioElement = document.querySelector('audio');
 
-    // pass it into the audio context
-    const track = audioContext.createMediaElementSource(audioElement);
+    // // pass it into the audio context
+    // const track = audioContext.createMediaElementSource(audioElement);
 
-    const gainNode = audioContext.createGain();
+    // const gainNode = audioContext.createGain();
     
-    const volumeControl = document.querySelector('#volume');
+    // const volumeControl = document.querySelector('#volume');
 
-    volumeControl.addEventListener('input', function() {
-        gainNode.gain.value = this.value;
-    }, false);
+    // volumeControl.addEventListener('input', function() {
+    //     gainNode.gain.value = this.value;
+    // }, false);
     
-    track.connect(gainNode).connect(audioContext.destination);
+    // track.connect(gainNode).connect(audioContext.destination);
 
-    // select our play button
-    const playButton = document.querySelector('button');
+    // // select our play button
+    // const playButton = document.querySelector('button');
 
-    playButton.addEventListener('click', function() {
+    // playButton.addEventListener('click', function() {
        
-        // check if context is in suspended state (autoplay policy)
-        if (audioContext.state === 'suspended') {
-            console.log('suspended');
-            audioContext.resume();
-        }
+    //     // check if context is in suspended state (autoplay policy)
+    //     if (audioContext.state === 'suspended') {
+    //         console.log('suspended');
+    //         audioContext.resume();
+    //     }
 
-        // play or pause track depending on state
-        if (this.dataset.playing === 'false') {
-            console.log('not playing');
-            audioElement.play();
-            this.dataset.playing = 'true';
-        } else if (this.dataset.playing === 'true') {
-            console.log('playing');
-            audioElement.pause();
-            this.dataset.playing = 'false';
-        }
+    //     // play or pause track depending on state
+    //     if (this.dataset.playing === 'false') {
+    //         console.log('not playing');
+    //         audioElement.play();
+    //         this.dataset.playing = 'true';
+    //     } else if (this.dataset.playing === 'true') {
+    //         console.log('playing');
+    //         audioElement.pause();
+    //         this.dataset.playing = 'false';
+    //     }
 
-    }, false);
+    // }, false);
 
-    audioElement.addEventListener('ended', () => {
-        console.log('ended');
-        playButton.dataset.playing = 'false';
-    }, false);
+    // audioElement.addEventListener('ended', () => {
+    //     console.log('ended');
+    //     playButton.dataset.playing = 'false';
+    // }, false);
 
     const amaButton = document.getElementById("ama-button");
     const amaAnswer = document.getElementById("ama-answer");
@@ -145,9 +145,15 @@
                 amaAnswer.innerHTML = 'Not finding anything on "' + answer + '". Try typing slowly.'; 
                 break;
             case 3: 
-                amaAnswer.innerHTML = 'I think your keyboard may be malfunctioning because the word, "' + answer + '" does not exist.'; 
+                amaAnswer.innerHTML = 'I think your keyboard may be malfunctioning because the word, "' + answer + '", does not exist.'; 
                 break;
             case 4: 
+                amaAnswer.innerHTML = 'Really think about it. The word,"' + answer + '", does not make any sense. Please try again.'; 
+                break;
+            case 5: 
+                amaAnswer.innerHTML = 'I think I am going to have to report this question. Please do use the word, "' + answer + '", again.'; 
+                break;
+            case 6: 
                 amaAnswer.innerHTML = 'If this is a game, I am not laughing.'; 
                 break;
             default: 

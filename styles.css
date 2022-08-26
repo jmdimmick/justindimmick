@@ -16,6 +16,17 @@ body {
     display: flex;
 }
 
+.about-content-wrapper {
+    display: flex;
+}
+
+.ama-wrapper {
+
+    padding-left: 35px;
+
+
+}
+
 .audio-wrapper {
     display: flex;
     padding-left: 35px;
@@ -118,6 +129,7 @@ body {
 }
 
 .portfolio-items-wrapper {
+    padding-left: 35px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
