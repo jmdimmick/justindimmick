@@ -147,6 +147,25 @@ body {
     transition: 2s;
 }
 
+.b1-items-wrapper {
+    padding-left: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.b1-item-wrapper {
+    position: relative;
+}
+
+.b1-img-background {
+    height: 2048px;
+    width: 2048px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 2s;
+}
+
 .img-text-wrapper {
     position: absolute;
     top: 0;
@@ -185,6 +204,11 @@ body {
 
 
 .portfolio-img-background:hover, .portfolio-img-background:active {
+    transition: 4.5s;
+    filter: hue-rotate(360deg);
+}
+
+.b1-img-background:hover, .b1-img-background:active {
     transition: 4.5s;
     filter: hue-rotate(360deg);
 }
@@ -248,8 +272,4 @@ h1 {
         background-repeat: no-repeat;
         transition: 2s;
     }
-}
-
-@media screen and (max-width:3000px) {
-
 }
