@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" name="viewport" content="width-device-width, initial-scale=1"/>
+<title>Page Title</title>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+        Your browser does not support canvas element.
+      </canvas>
+      <br>
+      Log: <pre id="log" style="border: 1px solid #ccc; height: 200px; width: 600px; overflow: scroll;"></pre>    
+</body>
+<script>
+function startup() {
+  const el = document.getElementById('canvas');
+  el.addEventListener('touchstart', handleStart);
+  el.addEventListener('touchend', handleEnd);
+  el.addEventListener('touchcancel', handleCancel);
+  el.addEventListener('touchmove', handleMove);
+  log('Initialized.');
+}
+
+document.addEventListener("DOMContentLoaded", startup);
+
+const ongoingTouches = [];
+
+function handleStart(evt) {
+  evt.preventDefault();
+  log('touchstart.');
+  const el = document.getElementById('canvas');
+  const ctx = el.getContext('2d');
+  const touches = evt.changedTouches;
+
+  for (let i = 0; i < touches.length; i++) {
+    log(`touchstart: ${i}.`);
+    ongoingTouches.push(copyTouch(touches[i]));
+    const color = colorForTouch(touches[i]);
+    log(`color of touch with id ${touches[i].identifier} = ${color}`);
+    ctx.beginPath();
+    ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+}
+
+</script>
+</html>
